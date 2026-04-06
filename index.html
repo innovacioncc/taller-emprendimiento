@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Del Laboratorio al Mercado | Taller de Startups y Spin-offs</title>
+    <meta name="description" content="Taller de 16 horas enfocado a investigadores y estudiantes CTIM aplicando metodología Lean Startup para el desarrollo de proyectos de base tecnológica.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f4f8',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            800: '#1e40af',
+                            900: '#0f172a', /* Very dark tech gray/blue */
+                        },
+                        accent: {
+                            500: '#0ea5e9',
+                            400: '#38bdf8',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Styles -->
+    <style>
+        /* Base Custom Styles */
+        :root {
+          --nav-height: 80px;
+        }
+
+        /* Utilities */
+        .text-balance {
+          text-wrap: balance;
+        }
+
+        /* Animations that are not cleanly supported by Tailwind arbitrary classes without bloat */
+        @keyframes blob {
+          0% { transform: translate(0px, 0px) scale(1); }
+          33% { transform: translate(30px, -50px) scale(1.1); }
+          66% { transform: translate(-20px, 20px) scale(0.9); }
+          100% { transform: translate(0px, 0px) scale(1); }
+        }
+
+        .animate-blob {
+          animation: blob 10s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+
+        .animation-delay-4000 {
+          animation-delay: 4s;
+        }
+
+        .fade-in-up {
+          opacity: 0;
+          transform: translateY(30px);
+          animation: fadeInUp 0.8s forwards cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes fadeInUp {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        /* Scroll reveal utility classes for JS intersection observer */
+        .reveal {
+          opacity: 0;
+          transform: translateY(40px);
+          transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Navbar scroll styles */
+        .scrolled-nav {
+          background-color: rgba(15, 23, 42, 0.95);
+          backdrop-filter: blur(10px);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Form inputs styling */
+        input:focus, textarea:focus {
+          outline: none;
+          box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
+        }
+
+        /* Program timeline custom styles */
+        .timeline-dot {
+          position: absolute;
+          left: -8px;
+          top: 6px;
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          background-color: white;
+          border: 4px solid #3b82f6; 
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="font-heading font-bold text-2xl tracking-tighter text-white logo-text">INNOVA<span class="text-accent-400">CIENCIA</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#inicio" class="text-gray-300 hover:text-white transition-colors text-sm font-semibold">Inicio</a>
+                    <a href="#resumen" class="text-gray-300 hover:text-white transition-colors text-sm font-semibold">Resumen</a>
+                    <a href="#por-que" class="text-gray-300 hover:text-white transition-colors text-sm font-semibold">¿Por Qué?</a>
+                    <a href="#programa" class="text-gray-300 hover:text-white transition-colors text-sm font-semibold">Programa</a>
+                    <a href="#inversion" class="bg-accent-500 hover:bg-accent-400 text-white px-5 py-2.5 rounded-full text-sm font-bold shadow-lg shadow-accent-500/30 transition-all transform hover:-translate-y-0.5">Inscríbete</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-gray-300 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-900 absolute w-full border-b border-gray-800 shadow-xl">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#inicio" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800 rounded-md">Inicio</a>
+                <a href="#resumen" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800 rounded-md">Resumen</a>
+                <a href="#por-que" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800 rounded-md">¿Por Qué?</a>
+                <a href="#programa" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800 rounded-md">Programa</a>
+                <a href="#inversion" class="block mt-4 text-center bg-accent-500 hover:bg-accent-400 text-white px-5 py-3 rounded-md text-base font-bold shadow-md">Inscríbete Ahora</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-brand-900">
+        <!-- Abstract Tech Background Elements -->
+        <div class="absolute inset-0 z-0 opacity-20">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-accent-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+            <div class="absolute top-0 left-0 w-96 h-96 bg-brand-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+            <div class="absolute -bottom-32 left-20 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+            <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-8 fade-in-up">
+                <span class="flex h-2 w-2 rounded-full bg-accent-400 animate-pulse"></span>
+                <span class="text-sm font-medium text-white">Taller Híbrido | 16 Horas de Formación</span>
+            </div>
+            
+            <h1 class="font-heading text-5xl md:text-7xl font-extrabold text-white tracking-tight mb-6 leading-tight fade-in-up" style="animation-delay: 0.1s;">
+                Del Laboratorio <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-400 to-brand-500">al Mercado</span>
+            </h1>
+            
+            <p class="mt-4 max-w-3xl text-xl md:text-2xl text-gray-300 font-light mb-10 fade-in-up" style="animation-delay: 0.2s;">
+                Creación de Startups, Spin-offs y Emprendimientos de Base Científica para Investigadores y Estudiantes CTIM.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-6 mb-12 fade-in-up" style="animation-delay: 0.3s;">
+                <div class="flex items-center gap-3 bg-white/5 backdrop-blur-sm px-6 py-4 rounded-xl border border-white/10">
+                    <div class="bg-brand-500/20 p-3 rounded-lg text-accent-400">
+                        <i class="far fa-calendar-alt text-xl"></i>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-xs text-gray-400 uppercase tracking-wider font-semibold">Inicia</p>
+                        <p class="text-white font-medium">6 de Junio, 2026</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 bg-white/5 backdrop-blur-sm px-6 py-4 rounded-xl border border-white/10">
+                    <div class="bg-brand-500/20 p-3 rounded-lg text-accent-400">
+                        <i class="far fa-calendar-check text-xl"></i>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-xs text-gray-400 uppercase tracking-wider font-semibold">Término</p>
+                        <p class="text-white font-medium">Noviembre, 2026</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row gap-4 fade-in-up" style="animation-delay: 0.4s;">
+                <a href="#inversion" class="bg-accent-500 hover:bg-accent-400 text-white px-8 py-4 rounded-full text-lg font-bold shadow-[0_0_20px_rgba(14,165,233,0.4)] transition-all transform hover:-translate-y-1 hover:scale-105 flex items-center justify-center gap-2 group">
+                    Asegura tu lugar <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <a href="#programa" class="bg-transparent hover:bg-white/10 border border-white/30 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all flex items-center justify-center gap-2">
+                    Ver Programa Completo
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#resumen" class="text-white/50 hover:text-white transition-colors">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+        
+        <!-- Shape Divider -->
+        <div class="absolute bottom-0 w-full overflow-hidden leading-none">
+            <svg class="relative block w-full h-12 md:h-24 filter drop-shadow-sm" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,121.32,201.39,114.38Z" class="fill-gray-50"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Resumen Section -->
+    <section id="resumen" class="py-24 bg-gray-50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <div class="inline-block mb-4 px-3 py-1 rounded-full bg-brand-100 text-brand-800 text-sm font-bold uppercase tracking-widest">
+                        El Taller
+                    </div>
+                    <h2 class="font-heading text-4xl md:text-5xl font-bold text-brand-900 mb-6 leading-tight">
+                        Transforma tu investigación en <span class="text-brand-600">impacto real</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Este taller de 16 horas está diseñado para investigadores y estudiantes de posgrado en áreas CTIM con interés en desarrollar un proyecto de emprendimiento, abordando la transición desde el laboratorio hasta la comercialización tecnológica.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        A través de la metodología <strong class="text-brand-800">Lean Startup</strong> para validación de modelos de negocio, guiado por académicos de UNAM y UAEMor que ya han fundado sus propias empresas, crearás tu Business Model Canvas con retroalimentación enfocada en conectar con fondos de apoyo.
+                    </p>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <span class="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-accent-100 text-accent-500 mt-1">
+                                <i class="fas fa-check text-xs"></i>
+                            </span>
+                            <span class="ml-3 text-gray-700 font-medium">Asesoría de fundadores científicos reales.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-accent-100 text-accent-500 mt-1">
+                                <i class="fas fa-check text-xs"></i>
+                            </span>
+                            <span class="ml-3 text-gray-700 font-medium">Validación de mercado con potenciales clientes.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-accent-100 text-accent-500 mt-1">
+                                <i class="fas fa-check text-xs"></i>
+                            </span>
+                            <span class="ml-3 text-gray-700 font-medium">Desarrollo de tu propio Business Model Canvas.</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="relative reveal delay-200">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-brand-600 to-accent-400 rounded-2xl transform rotate-3 opacity-20 blur-lg"></div>
+                    <div class="bg-white rounded-2xl shadow-xl p-8 relative z-10 border border-gray-100 h-full flex flex-col justify-center gap-6">
+                        <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors">
+                            <div class="bg-brand-100 p-4 rounded-full text-brand-600 text-xl">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl text-gray-900 mb-1">Para especialistas CTIM</h3>
+                                <p class="text-gray-600">Biotecnología, ingenierías, salud, materiales, física y más.</p>
+                            </div>
+                        </div>
+                        <div class="w-full h-px bg-gray-100"></div>
+                        <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors">
+                            <div class="bg-accent-100 p-4 rounded-full text-accent-500 text-xl">
+                                <i class="fas fa-laptop-house"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl text-gray-900 mb-1">Modalidad Híbrida</h3>
+                                <p class="text-gray-600">Presencial en ICF-UNAM Cuernavaca y remota vía Zoom/Slack.</p>
+                            </div>
+                        </div>
+                        <div class="w-full h-px bg-gray-100"></div>
+                        <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors">
+                            <div class="bg-purple-100 p-4 rounded-full text-purple-600 text-xl">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl text-gray-900 mb-1">Respaldo Institucional</h3>
+                                <p class="text-gray-600">Certificación avalada por la Red de Educación Continua de la UNAM.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ¿Por qué este taller? (Justificación / Qué esperar) -->
+    <section id="por-que" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center md:w-3/4 mx-auto mb-16 reveal">
+                <h2 class="font-heading text-4xl font-bold text-brand-900 mb-4">¿Por qué este taller?</h2>
+                <div class="w-24 h-1 bg-accent-500 mx-auto rounded-full mb-6"></div>
+                <p class="text-xl text-gray-600">De científico a emprendedor: genera valor más allá de los artículos y citas.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-brand-50 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 reveal delay-100 border border-brand-100">
+                    <div class="bg-brand-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl mb-6 shadow-lg shadow-brand-500/30">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand-900 mb-4">Emprender en México</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        A pesar del alto nivel de nuestra investigación, la creación de empresas de base tecnológica (spin-offs) es incipiente. Rompe la barrera y transita de la investigación a la acción en la Economía del Conocimiento.
+                    </p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 reveal delay-200 border border-gray-100 relative">
+                    <!-- Highlight badge -->
+                    <div class="absolute -top-4 right-6 bg-accent-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                        Oportunidad
+                    </div>
+                    <div class="bg-accent-500 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl mb-6 shadow-lg shadow-accent-500/30">
+                        <i class="fas fa-hand-holding-dollar"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Recursos para el Laboratorio</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Para académicos consolidados y jóvenes investigadores, el emprendimiento es una vía probada para generar alternativas financieras para sus laboratorios, fuera de los fondos tradicionales cada vez más restrictivos.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-brand-900 rounded-2xl p-8 shadow-xl transition-all duration-300 transform hover:-translate-y-2 reveal delay-300 text-white">
+                    <div class="bg-white/10 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl mb-6 backdrop-blur-md">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Mindset de Innovador</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Llena el vacío de la cultura emprendedora en la academia. Obtén herramientas prácticas y la ruta crítica para transformar tu conocimiento especializado en un modelo de negocio validado frente a clientes reales.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detalles Breves -->
+    <section class="py-16 bg-brand-900 text-white relative overflow-hidden">
+        <div class="absolute right-0 top-0 w-64 h-64 bg-accent-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/10">
+                <div class="px-4 reveal">
+                    <i class="far fa-clock text-4xl text-accent-400 mb-4"></i>
+                    <h4 class="text-3xl font-bold mb-1">16</h4>
+                    <p class="text-brand-100 text-sm tracking-wider uppercase font-medium">Horas de trabajo</p>
+                </div>
+                <div class="px-4 reveal delay-100">
+                    <i class="fas fa-users-viewfinder text-4xl text-accent-400 mb-4"></i>
+                    <h4 class="text-3xl font-bold mb-1">15-20</h4>
+                    <p class="text-brand-100 text-sm tracking-wider uppercase font-medium">Entrevistas Mínimas</p>
+                </div>
+                <div class="px-4 reveal delay-200">
+                    <i class="fas fa-network-wired text-4xl text-accent-400 mb-4"></i>
+                    <h4 class="text-3xl font-bold mb-1">Híbrido</h4>
+                    <p class="text-brand-100 text-sm tracking-wider uppercase font-medium">Modalidad</p>
+                </div>
+                <div class="px-4 reveal delay-300">
+                    <i class="fas fa-award text-4xl text-accent-400 mb-4"></i>
+                    <h4 class="text-3xl font-bold mb-1">1</h4>
+                    <p class="text-brand-100 text-sm tracking-wider uppercase font-medium">Pitch Final</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programa Detallado -->
+    <section id="programa" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center md:w-3/4 mx-auto mb-16 reveal">
+                <h2 class="font-heading text-4xl font-bold text-brand-900 mb-4">Programa Detallado</h2>
+                <div class="w-24 h-1 bg-brand-600 mx-auto rounded-full mb-6"></div>
+                <p class="text-xl text-gray-600">4 Sesiones intensivas diseñadas para validar y presentar tu modelo de negocios.</p>
+            </div>
+
+            <!-- Timeline -->
+            <div class="max-w-4xl mx-auto">
+                <!-- Sesion 1 -->
+                <div class="relative pl-8 sm:pl-32 py-6 group reveal">
+                    <div class="hidden sm:block font-heading text-brand-600 font-bold text-xl absolute left-0 top-8 text-right w-20">Sesión 1</div>
+                    <div class="timeline-dot group-hover:scale-125 transition-transform group-hover:bg-brand-600 group-hover:border-white"></div>
+                    <div class="absolute left-0 top-8 bottom-0 w-0.5 bg-gray-200 -z-10 group-last:bg-transparent"></div>
+                    
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 hover:shadow-lg transition-shadow">
+                        <div class="flex flex-wrap items-center justify-between mb-4 gap-4">
+                            <h3 class="text-2xl font-bold text-brand-900">Fundamentos y Antecedentes</h3>
+                            <span class="bg-gray-100 text-gray-700 font-medium text-sm px-4 py-1.5 rounded-full"><i class="far fa-calendar text-brand-500 mr-2"></i>6 de Junio, 2026</span>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex gap-4 items-start">
+                                <div class="text-brand-500 font-mono text-sm font-semibold pt-1 min-w-[100px]">09:10 - 10:00</div>
+                                <div>
+                                    <p class="font-medium text-gray-800">¿Por qué y cómo emprender en México? El recorrido de Agro&Biotecnia.</p>
+                                    <p class="text-sm text-gray-500">Dr. Enrique Galindo Fentanes</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <div class="text-brand-500 font-mono text-sm font-semibold pt-1 min-w-[100px]">10:00 - 11:00</div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Introducción a Lean Startup: El método científico a los negocios.</p>
+                                    <p class="text-sm text-gray-500">Dr. Antonio Juárez Reyes</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <div class="text-accent-500 font-mono text-sm font-semibold pt-1 min-w-[100px]">11:15 - 12:00</div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Testimonios de Fuego: Emprendedores Científicos</p>
+                                    <p class="text-sm text-gray-500">Dr. Alejandro Torres Gavilán & MBA Lorenzo Martínez</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <div class="text-brand-500 font-mono text-sm font-semibold pt-1 min-w-[100px]">12:40 - 13:00</div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Flipped Classroom: Instrucciones para el primer borrador Canvas.</p>
+                                    <p class="text-sm text-gray-500">Mtra. Rita García</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sesion 2 -->
+                <div class="relative pl-8 sm:pl-32 py-6 group reveal delay-100">
+                    <div class="hidden sm:block font-heading text-brand-600 font-bold text-xl absolute left-0 top-8 text-right w-20">Sesión 2</div>
+                    <div class="timeline-dot group-hover:scale-125 transition-transform group-hover:bg-brand-600 group-hover:border-white"></div>
+                    <div class="absolute left-0 top-8 bottom-0 w-0.5 bg-gray-200 -z-10 group-last:bg-transparent"></div>
+                    
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 hover:shadow-lg transition-shadow">
+                        <div class="flex flex-wrap items-center justify-between mb-4 gap-4">
+                            <h3 class="text-2xl font-bold text-brand-900">Validación del Modelo de Negocio</h3>
+                            <span class="bg-gray-100 text-gray-700 font-medium text-sm px-4 py-1.5 rounded-full"><i class="far fa-calendar text-brand-500 mr-2"></i>13 de Junio, 2026</span>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex gap-4 items-start">
+                                <div class="text-brand-500 font-mono text-sm font-semibold pt-1 min-w-[100px]">09:05 - 09:50</div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Producto Mínimamente Viable (MVP) y Customer Discovery.</p>
+                                    <p class="text-sm text-gray-500">Dr. Gerardo Corzo</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <div class="text-brand-500 font-mono text-sm font-semibold pt-1 min-w-[100px]">09:50 - 10:45</div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Profundizando en el Canvas: Propuesta de Valor y Segmentos de clientes.</p>
+                                    <p class="text-sm text-gray-500">M. en C. Rita García</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <div class="text-purple-600 font-mono text-sm font-semibold pt-1 min-w-[100px]">11:00 - 11:45</div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Marco Normativo: Ley de Ciencia y Tecnología e implicaciones.</p>
+                                    <p class="text-sm text-gray-500">Dra. Alma Cristal Hernández Mondragón</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <div class="text-accent-500 font-mono text-sm font-semibold pt-1 min-w-[100px]">11:45 - 13:00</div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Práctica de Pitch y definición del plan de entrevistas semanal.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sesion 3 -->
+                <div class="relative pl-8 sm:pl-32 py-6 group reveal delay-100">
+                    <div class="hidden sm:block font-heading text-brand-600 font-bold text-xl absolute left-0 top-8 text-right w-20">Sesión 3</div>
+                    <div class="timeline-dot group-hover:scale-125 transition-transform group-hover:bg-brand-600 group-hover:border-white"></div>
+                    <div class="absolute left-0 top-8 bottom-0 w-0.5 bg-gray-200 -z-10 group-last:bg-transparent"></div>
+                    
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 hover:shadow-lg transition-shadow">
+                        <div class="flex flex-wrap items-center justify-between mb-4 gap-4">
+                            <h3 class="text-2xl font-bold text-brand-900">Marco Normativo y Financiamiento</h3>
+                            <span class="bg-gray-100 text-gray-700 font-medium text-sm px-4 py-1.5 rounded-full"><i class="far fa-calendar text-brand-500 mr-2"></i>20 de Junio, 2026</span>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex gap-4 items-start">
+                                <div class="text-brand-500 font-mono text-sm font-semibold pt-1 min-w-[100px]">09:05 - 10:00</div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Propiedad Intelectual: Patentes, modelos de utilidad y secreto industrial.</p>
+                                    <p class="text-sm text-gray-500">M.A. Mario Trejo Loyo</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <div class="text-accent-500 font-mono text-sm font-semibold pt-1 min-w-[100px]">10:00 - 10:45</div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Testimonios de Fuego: Emprendedoras Científicas.</p>
+                                    <p class="text-sm text-gray-500">Dra. Margarita Tecpoyotl Torres & Dra. Erika Chavira Suárez</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <div class="text-green-600 font-mono text-sm font-semibold pt-1 min-w-[100px]">11:00 - 12:30</div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Fondos para "Deep Tech" (GRIDX, Viretec, Zentynel).</p>
+                                    <p class="text-sm text-gray-500">Teresa de León, Andrés Gómez, Martha Laura López</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <div class="text-brand-500 font-mono text-sm font-semibold pt-1 min-w-[100px]">12:30 - 13:00</div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Clínica de Proyectos: Revisión de avances en entrevistas y Pitch.</p>
+                                    <p class="text-sm text-gray-500">M. en C. Rita García</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sesion 4 -->
+                <div class="relative pl-8 sm:pl-32 py-6 group reveal delay-100">
+                    <div class="hidden sm:block font-heading text-brand-600 font-bold text-xl absolute left-0 top-8 text-right w-20">Sesión 4</div>
+                    <div class="timeline-dot group-hover:scale-125 transition-transform group-hover:bg-brand-600 group-hover:border-white"></div>
+                    
+                    <div class="bg-gradient-to-br from-white to-brand-50 rounded-2xl shadow-md border border-brand-100 p-6 md:p-8 hover:shadow-xl transition-shadow relative overflow-hidden">
+                        <!-- Decorative bg -->
+                        <div class="absolute -right-10 -bottom-10 text-brand-100 opacity-50 pointer-events-none">
+                            <i class="fas fa-trophy text-9xl"></i>
+                        </div>
+
+                        <div class="flex flex-wrap items-center justify-between mb-4 gap-4 relative z-10">
+                            <h3 class="text-2xl font-bold text-brand-900">Pitch Final y Cierre</h3>
+                            <span class="bg-brand-600 text-white font-medium text-sm px-4 py-1.5 rounded-full"><i class="far fa-calendar mr-2"></i>27 de Junio, 2026</span>
+                        </div>
+                        
+                        <div class="space-y-4 relative z-10">
+                            <div class="flex gap-4 items-start">
+                                <div class="text-brand-500 font-mono text-sm font-semibold pt-1 min-w-[100px]">09:10 - 11:30</div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Presentación Final de Proyectos y Evaluación ante instructores y fondos invitados.</p>
+                                    <p class="text-sm text-gray-500">Panel Especializado</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <div class="text-accent-500 font-mono text-sm font-semibold pt-1 min-w-[100px]">11:45 - 12:00</div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Oportunidades del ecosistema en Morelos.</p>
+                                    <p class="text-sm text-gray-500">Mtra. Patricia Pérez</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <div class="text-brand-500 font-mono text-sm font-semibold pt-1 min-w-[100px]">12:00 - 12:30</div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Mesa Redonda: Próximos pasos (MVP, incubadoras).</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <div class="text-brand-500 font-mono text-sm font-semibold pt-1 min-w-[100px]">12:30 - 12:45</div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Cierre de curso y entrega de reconocimientos.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12 mb-8 reveal">
+                <p class="text-sm text-gray-500 mb-2">Las sesiones siguientes están programadas para los sabados 31 de octubre, 7, 21 y 28 de noviembre de 2026.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners / Logos -->
+    <section class="py-12 bg-white border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-sm font-semibold text-gray-400 uppercase tracking-wider mb-8 reveal">Organizan y Respaldan</p>
+            <div class="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-500 reveal delay-100">
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-university text-4xl text-brand-800 mb-2"></i>
+                    <span class="font-bold text-gray-800 tracking-tight">UNAM</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-graduation-cap text-4xl text-brand-800 mb-2"></i>
+                    <span class="font-bold text-gray-800 tracking-tight">UAEMor</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-flask text-4xl text-brand-800 mb-2"></i>
+                    <span class="font-bold text-gray-800 tracking-tight">ICF-UNAM</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-globe text-4xl text-accent-500 mb-2"></i>
+                    <span class="font-bold text-gray-800 tracking-tight text-center">Innovación<br>con Ciencia</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inversión -->
+    <section id="inversion" class="py-24 bg-brand-50 relative overflow-hidden">
+        <div class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-accent-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50"></div>
+        <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-brand-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center md:w-3/4 mx-auto mb-16 reveal">
+                <h2 class="font-heading text-4xl font-bold text-brand-900 mb-4">Inversión</h2>
+                <div class="w-24 h-1 bg-accent-500 mx-auto rounded-full mb-6"></div>
+                <p class="text-xl text-gray-600">Asegura tu lugar en este taller de alto impacto y comienza a construir tu startup.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-center">
+                
+                <!-- Estudiantes -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 reveal delay-100 hover:shadow-lg transition-transform transform hover:-translate-y-2">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Estudiantes</h3>
+                    <p class="text-gray-500 text-sm mb-6">Posgrado y licenciatura</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-extrabold text-brand-900">$3,800</span>
+                        <span class="text-gray-500">MXN</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-gray-600"><i class="fas fa-check text-accent-500 mr-3"></i> Acceso a 16h de taller</li>
+                        <li class="flex items-center text-gray-600"><i class="fas fa-check text-accent-500 mr-3"></i> Mentoría personalizada</li>
+                        <li class="flex items-center text-gray-600"><i class="fas fa-check text-accent-500 mr-3"></i> Constancia REDEC</li>
+                    </ul>
+                    <a href="#" class="block w-full text-center bg-gray-100 hover:bg-gray-200 text-brand-900 font-bold py-3 rounded-xl transition-colors">Inscribirse</a>
+                </div>
+
+                <!-- Comunidad -->
+                <div class="bg-brand-900 rounded-2xl p-8 shadow-2xl relative border border-brand-700 reveal transform md:-translate-y-4 hover:-translate-y-6 transition-transform z-10">
+                    <div class="absolute top-0 inset-x-0 transform -translate-y-1/2 flex justify-center">
+                        <span class="bg-accent-500 text-white text-xs font-bold px-4 py-1 rounded-full shadow-md uppercase tracking-wide">Mejor Valor</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Comunidad</h3>
+                    <p class="text-brand-200 text-sm mb-6">Investigadores UNAM / UAEMor</p>
+                    <div class="mb-6">
+                        <span class="text-5xl font-extrabold text-white">$4,500</span>
+                        <span class="text-brand-300">MXN</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-brand-100"><i class="fas fa-check text-accent-400 mr-3"></i> Todas las 16h de taller</li>
+                        <li class="flex items-center text-brand-100"><i class="fas fa-check text-accent-400 mr-3"></i> Mentoría prioritaria</li>
+                        <li class="flex items-center text-brand-100"><i class="fas fa-check text-accent-400 mr-3"></i> Oportunidad de Pitch a Fondos</li>
+                        <li class="flex items-center text-brand-100"><i class="fas fa-check text-accent-400 mr-3"></i> Diploma Oficial REDEC</li>
+                    </ul>
+                    <a href="#" class="block w-full text-center bg-accent-500 hover:bg-accent-400 text-white font-bold py-4 rounded-xl transition-colors shadow-lg shadow-accent-500/30">Inscribirse Ahora</a>
+                </div>
+
+                <!-- General -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 reveal delay-200 hover:shadow-lg transition-transform transform hover:-translate-y-2">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Público General</h3>
+                    <p class="text-gray-500 text-sm mb-6">Público CTIM e interesados</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-extrabold text-brand-900">$5,000</span>
+                        <span class="text-gray-500">MXN</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-gray-600"><i class="fas fa-check text-accent-500 mr-3"></i> Acceso a 16h de taller</li>
+                        <li class="flex items-center text-gray-600"><i class="fas fa-check text-accent-500 mr-3"></i> Metodología y Herramientas</li>
+                        <li class="flex items-center text-gray-600"><i class="fas fa-check text-accent-500 mr-3"></i> Constancia de Participación</li>
+                    </ul>
+                    <a href="#" class="block w-full text-center bg-gray-100 hover:bg-gray-200 text-brand-900 font-bold py-3 rounded-xl transition-colors">Inscribirse</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificación -->
+    <section class="py-16 bg-white border-t border-gray-100">
+        <div class="max-w-4xl mx-auto px-4 text-center reveal">
+            <div class="inline-flex items-center justify-center p-4 bg-purple-50 text-purple-600 rounded-full mb-6">
+                <i class="fas fa-certificate text-4xl"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Certificación de Alto Valor</h2>
+            <p class="text-gray-600 text-lg leading-relaxed">
+                Este taller cuenta con el reconocimiento y aval de la <strong class="text-brand-800">Red de Educación Continua de la UNAM (REDEC-UNAM)</strong>. Se otorgarán certificados de Aprobación a quienes presenten su pitch final y cumplan con las mentorías, o certificados de Asistencia.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-900 pt-16 pb-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-8">
+                <div>
+                    <span class="font-heading font-bold text-3xl tracking-tighter text-white">INNOVA<span class="text-accent-400">CIENCIA</span></span>
+                    <p class="text-gray-400 mt-2 max-w-sm text-sm">Promoviendo la cultura del emprendimiento tecnológico en la comunidad científica mexicana.</p>
+                </div>
+                
+                <div class="flex items-center gap-6">
+                    <a href="#" class="text-white bg-white/10 hover:bg-accent-500 w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-white bg-white/10 hover:bg-accent-500 w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="text-white bg-white/10 hover:bg-accent-500 w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 gap-4">
+                <p>&copy; 2026 Taller de Startups y Spin-offs. Todos los derechos reservados.</p>
+                <p>
+                    Respaldado por la 
+                    <a href="https://innovacioncc.github.io/" target="_blank" rel="noopener noreferrer" class="text-accent-400 hover:text-white transition-colors underline decoration-accent-400/30 font-medium">Asociación Innovación con Ciencia</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Fallback: If JS loads, we will let IntersectionObserver handle it.
+        // If it doesn't load at all, the CSS will still hide them.
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Mobile Menu Toggle
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+
+            if (btn && menu) {
+                btn.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                });
+
+                // Close mobile menu when clicking a link
+                const mobileLinks = menu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        menu.classList.add('hidden');
+                    });
+                });
+            }
+
+            // 2. Navbar Background on Scroll
+            const navbar = document.getElementById('navbar');
+            
+            if (navbar) {
+                const handleScroll = () => {
+                    if (window.scrollY > 50) {
+                        navbar.classList.add('scrolled-nav');
+                    } else {
+                        navbar.classList.remove('scrolled-nav');
+                    }
+                };
+                
+                window.addEventListener('scroll', handleScroll, { passive: true });
+                handleScroll(); // Init
+            }
+
+            // 3. Scroll Reveal Animations
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            if (typeof IntersectionObserver !== 'undefined') {
+                const revealCallback = function(entries, observer) {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('active');
+                        }
+                    });
+                };
+
+                const revealOptions = {
+                    threshold: 0.1,
+                    rootMargin: "0px 0px -50px 0px"
+                };
+
+                try {
+                    const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+
+                    revealElements.forEach(el => {
+                        revealObserver.observe(el);
+                    });
+                } catch(e) {
+                    revealElements.forEach(el => el.classList.add('active'));
+                }
+            } else {
+                revealElements.forEach(el => el.classList.add('active'));
+            }
+        });
+        
+        // Final fallback: if this script blocks or errors midway, reveal all after 1.5s
+        setTimeout(() => {
+            document.querySelectorAll('.reveal:not(.active)').forEach(el => el.classList.add('active'));
+        }, 1500);
+    </script>
+</body>
+</html>
