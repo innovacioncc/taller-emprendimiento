@@ -1,0 +1,108 @@
+Landing page
+https://innovacioncc.github.io/taller-emprendimiento/
+1. Carátula 
+A esta primera parte normalmente se le llama “hero” (es el primer marco de la página donde se muestra la frase de impacto y presentación del curso). 
+Sería muy adecuado poner una imagen de fondo que involucre a personas, porque así se genera ese vínculo con lo aspiracional. “Quiero ser como ese científico que está siendo exitoso”. Pedí una imagen a Chat GPT y me gustó esta Imágenes de utilidad: 
+El texto tendría que quedar cargado del lado izquierdo, no centrado, para que se vea bien. Si no se ve bien desde el celular, usar otra imagen de impacto, pero es importante para no crear una landing page aburrida.
+Sobre los textos, el hero debe contener una frase de impacto que fomente en el público una necesidad inmediata de inscribirse, por lo que sugiero cambiar los textos para que quede así:  https://canva.link/bsumpkroo2uomud
+Nótese el color dorado del botón para inscribirse. Es altamente recomendable que sea de ese color para que den clic de inmediato. También, lo mejor es dejar un solo botón. Si quieren saber más, van a seguir leyendo.
+El botón ¡Asegura tu lugar! debe redirigir al formulario de registro: https://docs.google.com/forms/d/e/1FAIpQLSflyTCSTbmB6nmAMTzPtSZl9_XxkicXMm-kL3ls2V6yQBNO-Q/viewform?usp=sharing&ouid=116550551507253285992
+Dejar solamente una fecha en el calendario. Iniciamos el 6 de junio.
+Sugiero agregar los logos UNAM e ICF, si nos permiten usarlos, si no, con el de innovación con Ciencia está bien. Lo cargué en el drive: Imágenes de utilidad
+2. Propuesta de valor
+Está excelente el acomodo de esta sección, solo cambiaría el título, porque sugerí moverlo a la carátula. Título sugerido para esta sección: 
+“De la academia al impacto real” 
+Lo siguiente del texto está perfecto. 
+En el cuadro de la derecha, donde se enlistan 3 puntos importantes, agregaría un cuarto punto: “Mentorías. Acompañamiento especializado por integrantes de la Asociación Innovación con Ciencia”. (No poner link de la AC para que las personas no se distraigan ni se salgan de esta landing page). 
+3.  ¿Por qué escogernos?
+Texto cuadro 1. Sugiero cambiar título y texto por: “¿Tu investigación tiene potencial?” 
+No dejes que se quede en el papel. Rompe la barrera y transita de la investigación a la acción en la Economía del Conocimiento. Aprende a transformar tu desarrollo tecnológico en valor tangible.
+Texto cuadro 2. Sugiero cambiar el título por: “Ingresos para tu laboratorio”
+Sugiero eliminar las palabras al final del texto: “cada vez más restrictivos”, colocar el punto final después de “fuera de los fondos tradicionales”. Esto porque el cuadro de texto termina con algo negativo, es mejor dejar la sensación de positividad, que se queden solo con la idea de que emprender es una buena alternativa para generar más para el laboratorio, así no hay otra línea de pensamiento que le distraiga. 
+Texto cuadro 3. De acuerdo con todo 🙂
+4.  Contenido del curso
+Contenido ok, con detalles mínimos: 
+Yo colocaría al lado de cada nombre su puesto principal, para inspirar más confianza en el docente. Por ejemplo:  
+09:10 - 10:00
+¿Por qué y cómo emprender en México? El recorrido de Agro&Biotecnia.
+Dr. Enrique Galindo Fentanes (IBt-UNAM / Agro&Biotecnia).
+11:15 - 12:00
+Testimonios de Fuego: Emprendedores Científicos
+Dr. Alejandro Torres Gavilán (SciTherm, Applied Biotec) & Dr. Lorenzo Martínez (Corrosión y Protección).
+Si bien los puestos se muestran en los detalles de los docentes y ponentes (más abajo), la mayoría no llegará a esa sección. Pero, al ver el contenido y notar que lo darán personas de UNAM / UAEMor, con empresas, puede convencerse desde antes y estimular el interés en consultar la semblanza de los ponentes y seguir leyendo. 
+Lorenzo Martínez tiene un doctorado, por lo que es Dr. Lorenzo Martínez.
+Al final sugiero quitar el texto “Las sesiones siguientes están programadas para los sábados 31 de octubre, 7, 21 y 28 de noviembre de 2026.” 
+Repetir, en dorado el botón con el texto: ¡Quiero inscribirme!. Es recomendable repetirlo varias veces, en cualquier momento el cliente puede sentir ese convencimiento y dar clic, aún sin leer todo. 
+  
+5. Profesores y ponentes
+Falta resaltar a los coordinadores. A continuación los textos e imágenes para incluir: 
+M.C. Rita Vianey García Rentería
+Coordinadora y docente
+Cofundadora de Teotlina. Coordinadora de Innovación con Ciencia. Cuenta con 14 años en la industria de alimentos, experiencia docente y liderazgo en innovación. Enfocada en biotecnología y alimentos sustentables. 
+Foto Rita García.jpeg
+Dr. Antonio M. Juárez Reyes
+Coordinador y docente
+Cofundador de Q-dot Analytical Solutions, investigador titular y líder del Laboratorio de Fotodinámica Molecular en ICF-UNAM. Es físico por la UNAM  con doctorado en Manchester. Con más de 50 publicaciones, 4 patentes y experiencia internacional, combina ciencia de frontera con emprendimiento tecnológico. Dr. Antonio Juárez.jpeg
+Dr. Enrique Galindo Fentanes
+Coordinador y docente
+Investigador titular de IBt - UNAM, emérito del SNI, ha construido una destacada trayectoria al vincular investigación científica con innovación empresarial. Autor de 140 publicaciones, 8 patentes y un libro, fundó Agro&Biotecnia, empresa que desarrolló el primer biofungicida foliar mexicano. Su liderazgo en biotecnología aplicada le ha valido numerosos reconocimientos como el Premio Nacional de Ciencias y Artes. Fue Presidente de la Sociedad Mexicana de Biotecnología y Bioingeniería, A.C. (1998-2000) y Presidente de la Academia de Ciencias de Morelos (2007-2008)
+Foto E. Galindo (2026).jpg
+Dr. Carlos Felipe Peña Malacara
+Coordinador
+Dr. Carlos Peña es investigador titular C en IBt - UNAM y referente en bioprocesos, cuenta con más de 70 publicaciones científicas y una sólida trayectoria formando talento en LATAM, donde destaca el curso de emprendimiento de base científica que ha impartido por más de 15 años. Ha desarrollado tecnologías patentadas en biotecnología alimentaria y ambiental, y es cofundador de empresas como Biopolymex y MicroIn.
+Foto Carlos Peña.jpg
+Dr. Gerardo Corzo
+Docente
+Investigador en IBt - UNAM y referente en bioprospección de moléculas derivadas de venenos animales. Con experiencia internacional en Japón y EE. UU., ha transformado ciencia de frontera en innovación aplicada como cofundador de Peptherapeutics y Arakion, esta última dedicada a generar insecticidas a partir del veneno de arácnidos.
+Gerardo Corzo.jpg
+Dra. Alma Cristal Hernández Mondragón
+Docente
+Experta en política científica y profesora en CINVESTAV. Ha impulsado cambios normativos, creado el primer programa de asesores científicos en Latinoamérica y ha cofundado iniciativas clave como AMEXAC. Hoy forma líderes para incidir con ciencia en políticas públicas.
+ACHM pic2.jpg
+M.A. Mario Trejo Loyo
+Docente
+Experto en propiedad industrial y transferencia de tecnología. Como Secretario Técnico de Gestión y Transferencia de Tecnología del IBt - UNAM ha gestionado más de 200 patentes, negociado alrededor de 600 convenios y transferido más de 30 tecnologías. Forma profesionales para llevar la innovación científica al mercado y ha sido ponente y organizador de diversos cursos, seminarios y simposios sobre transferencia de tecnología y PI.
+WhatsApp Image 2026-04-08 at 4.33.05 PM.jpeg
+Dr. Alejandro Tórres
+Ponente
+Especialista en biocatálisis, ha dedicado más de 10 años a convertir ciencia en negocios de alto impacto. Cofundador de SciTherm y de Applied Biotec, empresa reconocida con el Premio Nacional al Emprendedor y galardonada con el Premio Nacional de Tecnología e Innovación 2018. Es líder en transferencia tecnológica, protección intelectual y levantamiento de inversión.
+ATG-GrowGridx-Demo.jpg
+Dr. Lorenzo Martínez
+Ponente
+Director General de Corrosión y Protección. Empresario e innovador mexicano, reconocido como el especialista certificado en protección catódica (CP4) más joven del mundo por NACE. Ha liderado más de 500 proyectos en energía, capacitado a más de 6,000 profesionales y es autor de 47 patentes. 
+Lorenzo Martínez.jpeg
+Dra. Margarita Tecpoyotl
+Ponente
+Fundadora de Inntecver, investigadora UAEMor y líder en bioingeniería, ha desarrollado tecnologías reconocidas internacionalmente, como la antena más pequeña del mundo. Con 7 patentes y múltiples premios, impulsa la innovación aplicada y forma talento científico-emprendedor.
+Foto Mar wiki sin fondo.png
+Dra. Erika Chavira
+Ponente
+Erika Chavira es tecnóloga biomédica e investigadora en DOHaD, referente en salud materno-infantil. Ha liderado redes y congresos internacionales, y es fundadora de TESSIUM, startup de innovación en salud. Impulsa soluciones científicas para mejorar la salud desde los primeros mil días de vida.
+Erika Chavira.jpeg
+M.C. Patricia Pérez (Falta foto, poner logo de CEMITT).
+CeMITT
+El Centro Morelense de Innovación y Transferencia Tecnológica (CEMITT) es una institución gubernamental de Morelos, México, dependiente del CCyTEM. Su misión es impulsar el ecosistema de emprendimiento, la transferencia tecnológica y la innovación, conectando los sectores académico y productivo.
+Logo CEMITT.jpg
+De acuerdo con este recuadro solo cambiar la imagen en el círculo y listar a los representantes: MSTC Teresa de León, Ing. Andrés Gómez y Mtra. Martha Laura López.
+6.  Respaldan
+ 
+Colocar los logos que son, están en el canvas previamente mencionado. 
+Quitar los beneficios de los paquetes, porque en realidad todos reciben lo mismo, solo pagan distinto. Mejor colocar el texto de lo que se requiere que demuestren: 
+Estudiantes
+Posgrado y licenciatura
+$3,800 MXN
+Comprobar con credencial de alumno o certificado académico. 
+Comunidad
+Investigadores y académicos UNAM / UAEMor
+$4,500 MXN
+Comprobar con credencial o una constancia UNAM / UAEMor 
+Público General
+Interesados en emprender desde la ciencia. 
+$5,000 MXN
+Público CTIM
+Cambiar el color del botón “Inscribirse”, de preferencia en un azul para que resalte, no en gris. Todos redirigen al mismo formulario: https://docs.google.com/forms/d/e/1FAIpQLSflyTCSTbmB6nmAMTzPtSZl9_XxkicXMm-kL3ls2V6yQBNO-Q/viewform?usp=sharing&ouid=116550551507253285992
+7. Certificación
+Cambiar el ícono por un diploma o algo así: 
+8. Barra inferior
+Colocar el logo actual y el slogan: “Promovemos el emprendimiento científico y tecnológico”
+Del lado derecho, colocar los logos con link a facebook: https://www.facebook.com/innovacionconciencia y linkedin: https://www.linkedin.com/company/innovaci%C3%B3n-con-ciencia/about/
