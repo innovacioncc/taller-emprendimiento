@@ -1,0 +1,10 @@
+Iteración #2 para landing page
+Nuestra landing page está casi lista. Las siguientes son las últimas observaciones:
+Hero
+Comenta Toño que podemos mostrar más equidad usando una imagen con hombre y mujer. Adjunto imagen propuesta: 001 FINAL Hero
+Fotografía de Mario Trejo
+Solo se veían sus ojos (muy curioso). Modifiqué su imagen para que se vea mejor: 01 Modificada Mario Trejo. Quedo al pendiente por si queda mejor o es necesario solicitarle otra. 
+Panel final de la página: 
+Al final dice que el curso está respaldado por UNAM, Innovación con Ciencia, etc. Pero tiene iconos que no son los logos. Eso confunde. 
+Si no se pueden agregar ahí los logos. Sugiero borrar los íconos y dejar solamente los nombres de las instituciones. 
+De mi parte son todas las observaciones sobre la landing page.
